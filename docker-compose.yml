@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  fire-smoke-detector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fire_smoke_detector_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./fire-smoke-detector-yolov8/data:/app/fire-smoke-detector-yolov8/data
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
